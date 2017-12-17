@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _02.oddOccurrances
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var input = Console.ReadLine()
+                .ToLower().Split(' ').ToList();
+            var count = new Dictionary<string, int>();
+            foreach (var str in input)
+            {
+                if (count.ContainsKey(str))
+                {
+                    count[str]++;
+                }
+                else
+                {
+                    count[str] = 1;
+                }
+            }
+            //var result = count
+            //    .Where(w => w.Value % 2 == 1)
+            //    .Select(w => w.Key)
+            //    .ToList();
+            var result = new List<string>();
+
+            foreach (var str in count.Keys)
+            {
+                if (count[str] % 2 != 0)
+                {
+                   
+                    result.Add(str);
+                }
+            }
+            Console.WriteLine(string.Join(", ",result));
+        }
+    }
+}
