@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _06.foldAndSum
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var input =Console.ReadLine().Split(' ')
+                .Select(int.Parse).ToArray();
+            int k = input.Length / 4;
+            var first = input.Take(k).Reverse().ToArray();
+            var middle = input.Skip(k).Take(2 * k).ToArray();
+            var last = input.Skip(3 * k).Take(k).Reverse().ToArray();
+            var firstLast = first.Concat(last).ToArray();
+            var sum = new List<int>();
+            for (int i = 0; i < middle.Length; i++)
+            {
+                sum.Add(firstLast[i] + middle[i]);
+            }
+            Console.WriteLine(string.Join(" ",sum));
+        }
+    }
+}
